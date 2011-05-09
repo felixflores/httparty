@@ -234,6 +234,12 @@ describe HTTParty::Request do
         @request.send(:http).open_timeout.should == 5
         @request.send(:http).read_timeout.should == 5
       end
+
+      it "sets the timeout to 200 milliseconds" do
+        @request.options[:timeout] = 0.2
+        @request.send(:http).open_timeout.should == 0.2
+        @request.send(:http).read_timeout.should == 0.2
+      end
     end
   end
 
